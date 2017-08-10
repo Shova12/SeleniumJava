@@ -59,9 +59,7 @@ public class ChoosingDifferentSize {
 		searchField.sendKeys("Bath mat");
 		
 		driver.findElement(By.className("searchFormButton")).submit();
-		
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
+
 	
 		driver.findElement(By.xpath(".//*[@id='row1']/div[1]/div[2]/a/img")).click();
 		System.out.println(driver.getTitle());
@@ -85,8 +83,8 @@ public class ChoosingDifferentSize {
 			System.out.println("No text passed."+e.getMessage());
 			
 		}*/
-		
-		//print list
+	
+		/*//print list
 		Select selectSize = new Select(selectTextBox);
 		List<WebElement> selectCount = selectSize.getOptions();
 		int listSize = selectCount.size();
@@ -106,7 +104,7 @@ public class ChoosingDifferentSize {
 				
 		}	
 		
-		driver.findElement(By.xpath(".//*[@title='AQUA BLUE']")).click();
+		driver.findElement(By.xpath(".//*[@title='AQUA BLUE']")).click();*/
 			
 		
 		
