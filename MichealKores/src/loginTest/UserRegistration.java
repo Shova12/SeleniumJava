@@ -10,7 +10,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import junit.framework.Assert;
 
@@ -72,7 +74,6 @@ public class UserRegistration {
 			
 		}
 		else{
-			System.out.println("Failed");
 		}
 			
 		
@@ -98,22 +99,33 @@ public class UserRegistration {
 		driver.findElement(By.xpath(".//*[@id='phone_number']")).sendKeys("4157568458");
 		driver.findElement(By.xpath(".//*[@id='mobile_number']")).sendKeys("4157568458");
 		driver.findElement(By.xpath(".//*[@id='postal_code']")).sendKeys("04587");
-	
-		WebElement birthMonth = driver.findElement(By.xpath(".//select[@id='birth_date']"));
-		if(birthMonth.isEnabled()){
-			System.out.println("It is ok");
-			
-		}
-		Select select = new Select(birthMonth);
+		
 		Thread.sleep(2000);
-		select.selectByVisibleText("01 - January");
 		
-		Select select2 = new Select(driver.findElement(By.xpath(".//select[@id='date']")));
-		select2.selectByVisibleText("3");
+			
+		//driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[1]")).click();
+		WebElement frame = driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[1]"));
+		frame.click();
+		WebElement selectFromDropdown = (new WebDriverWait(driver, 20))
+				  .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='fields_container month_date']/div[1]/ul")));
+		System.out.println(selectFromDropdown);
+		driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[1]/ul/li[3]/a")).click();
+		
+		/*Select select = new Select(driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[1]/ul")));
+		select.selectByVisibleText("01 - January");*/
 		
 		
-		Select select3 = new Select(driver.findElement(By.xpath(".//select[@id='gender']")));
-		select3.selectByVisibleText("female");
+		
+		WebElement dateOfBirth = driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[2]"));
+		dateOfBirth.click();
+		WebElement selectFromDropdown1 = (new WebDriverWait(driver, 20))
+				  .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='fields_container month_date']/div[2]/ul")));
+		System.out.println(selectFromDropdown);
+		driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[2]/ul/li[3]/a")).click();
+		
+		
+		driver.findElement(By.xpath(".//*[@class='fields_container']/div[1]//@id='sbHolder_71382323'")).click();
+		
 		
 		driver.findElement(By.xpath(".//*[@id='password']")).sendKeys("abcd1234");
 		driver.findElement(By.xpath(".//*[@id='confirm_password']")).sendKeys("abcd1234");
