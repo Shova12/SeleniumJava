@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class FunctionalaityTest {
+public class FunctionalityTest {
 	
 
 	static WebDriver driver = new FirefoxDriver();
@@ -85,7 +85,7 @@ public class FunctionalaityTest {
 				System.out.println("The number of items: "+itemInCart );
 				//System.out.println("The number of items: "+ y);
 		*/		
-				FunctionalaityTest testObj = new FunctionalaityTest();
+				FunctionalityTest testObj = new FunctionalityTest();
 				try {
 					testObj.addcart1();
 				} catch (InterruptedException e) {
