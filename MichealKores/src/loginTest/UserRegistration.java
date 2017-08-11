@@ -66,15 +66,25 @@ public class UserRegistration {
 		System.out.println("I am in registred page");
 		
 		Thread.sleep(2000);
-		
-		WebElement element = driver.findElement(By.xpath(".//*[@id='email_address']"));
-		
-		if(element.isDisplayed()){
-			System.out.println("Passed");
+		try{
+			
+			WebElement element = driver.findElement(By.xpath(".//*[@id='email_address']"));
+			if(element.isDisplayed()){
+				element.click();
+				System.out.println("Entered");
+				
+			}
+			else{
+				
+			}
 			
 		}
-		else{
+		catch(Exception e ){
+			System.out.println(e.getMessage());
+			
 		}
+		
+		
 			
 		
 		WebElement list = driver.findElement(By.id("country"));
@@ -102,13 +112,12 @@ public class UserRegistration {
 		
 		Thread.sleep(2000);
 		
-			
-		//driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[1]")).click();
+		//DROPDOWN Menu	
 		WebElement frame = driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[1]"));
 		frame.click();
-		WebElement selectFromDropdown = (new WebDriverWait(driver, 20))
+		WebElement selectFromDropdownM = (new WebDriverWait(driver, 20))
 				  .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='fields_container month_date']/div[1]/ul")));
-		System.out.println(selectFromDropdown);
+		System.out.println(selectFromDropdownM);
 		driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[1]/ul/li[3]/a")).click();
 		
 		/*Select select = new Select(driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[1]/ul")));
@@ -118,26 +127,35 @@ public class UserRegistration {
 		
 		WebElement dateOfBirth = driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[2]"));
 		dateOfBirth.click();
-		WebElement selectFromDropdown1 = (new WebDriverWait(driver, 20))
+		WebElement selectFromDropdownDB = (new WebDriverWait(driver, 20))
 				  .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@class='fields_container month_date']/div[2]/ul")));
-		System.out.println(selectFromDropdown);
+		System.out.println(selectFromDropdownDB.getText());
 		driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[2]/ul/li[3]/a")).click();
 		
 		
-		driver.findElement(By.xpath(".//*[@class='fields_container']/div[1]//@id='sbHolder_71382323'")).click();
+		driver.findElement(By.xpath(".//*[@class='fields_container']")).click();
+		//driver.findElement(By.xpath(".//*[@class='fields_container']/div/ul/li[2]")).click();
 		
 		
-		driver.findElement(By.xpath(".//*[@id='password']")).sendKeys("abcd1234");
-		driver.findElement(By.xpath(".//*[@id='confirm_password']")).sendKeys("abcd1234");
 		
-		Select select4 = new Select(driver.findElement(By.xpath(".//*[@id='security_question']")));
-		select4.selectByVisibleText("What is your best friend's first name?");
+		driver.findElement(By.xpath(".//*[@class='password_fields_container']/div[1]/div[2]")).sendKeys("Abcd1234");
+		driver.findElement(By.xpath(".//*[@id='confirm_password']")).sendKeys("Abcd1234");
+		try{
+			WebElement e1 = driver.findElement(By.xpath(".//*[@class='password_fields_container']/div[3]/div/ul"));
 		
-		driver.findElement(By.xpath(".//*[@id='security_question_answer']")).sendKeys("mango");
-
+			if(e1.isDisplayed()){
+				e1.click();
+				driver.findElement(By.xpath(".//*[@class='password_fields_container']/div[3]/div/ul/li[3]")).click();
+			}
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		
+		
 		driver.findElement(By.xpath(".//*[@id='security_question_answer']")).sendKeys("mango");
 		driver.findElement(By.xpath(".//*[@id='terms-conditions']")).click();
-		
+		driver.findElement(By.xpath(".//*[@class='register_account']")).submit();
 	
 		
 		driver.close();
