@@ -129,7 +129,10 @@ public class FunctionalTest {
 		
 		
 		
-		WebElement addToCartButton=  driver.findElement(By.xpath(".//*[@id='buttonRedesign']/div/input"));
+		WebElement addToCartButton=  driver.findElement(By.xpath(".//*[@id='shoppingCartItems']"));
+		/*driver.findElement(By.xpath("")).sendKeys("utestester10@gmail.com");
+		driver.findElement(By.xpath("")).sendKeys("Abcd1234");
+*/		//.//*[@id='buttonRedesign']/div/input
 		
 		
 		if(addToCartButton.isEnabled()){
@@ -143,9 +146,6 @@ public class FunctionalTest {
 		
 		
 		
-		
-		
-		//driver.switchTo().activeElement();
 		WebElement cart = driver.findElement(By.xpath(".//*[@id='cartItems']"));
 		cart.click();
 		if(cart.equals(1)){

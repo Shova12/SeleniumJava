@@ -96,6 +96,27 @@ public class FunctionalityTest {
 				int []a={2,3};
 				testObj.calculation(a);
 				
+
+				/*String parentWindowHandle = driver.getWindowHandle();
+				
+				Set<String> childWindowHandles = driver.getWindowHandles();
+				Iterator <String> iterator  =  childWindowHandles.iterator ();
+				String subWindowHandler = null;
+				while (iterator.hasNext()){
+				    subWindowHandler = iterator.next();
+				}
+				driver.switchTo().window(subWindowHandler); // switch to popup window
+				
+				/*System.out.println("Title:"+ driver.getTitle());
+
+				Now you are in the popup window, perform necessary actions here
+
+				driver.switchTo().window(parentWindowHandle);
+				
+			
+				driver.findElement(By.id(".//*[@id='text0']")).sendKeys("SHASHI");
+				
+				driver.findElement(By.xpath(".//*[@id='kat_optin']/div/label/span")).click();*/
 				
 				driver.close();
 				System.out.println("Successful execution");

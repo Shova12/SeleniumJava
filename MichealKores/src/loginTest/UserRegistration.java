@@ -132,7 +132,7 @@ public class UserRegistration {
 		System.out.println(selectFromDropdownDB.getText());
 		driver.findElement(By.xpath(".//*[@class='fields_container month_date']/div[2]/ul/li[3]/a")).click();
 		
-		
+		//gender
 		driver.findElement(By.xpath(".//*[@class='fields_container']")).click();
 		//driver.findElement(By.xpath(".//*[@class='fields_container']/div/ul/li[2]")).click();
 		

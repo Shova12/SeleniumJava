@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.Timeouts;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -22,12 +23,12 @@ import files.PropertiesFiles;
 public class functionalityTest {
 
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		PropertiesFiles prop = new PropertiesFiles();
 		String browserType = prop.browserType();
 		System.out.println(browserType);
 
-		String childWindow ;
+	
 		WebDriver driver = null;
 		if(browserType.equals("chrome")){
 			System.setProperty("webdriver.chrome.driver", "C:\\wamp\\www\\driverforSelenium\\chromedriver.exe");
@@ -56,32 +57,20 @@ public class functionalityTest {
 		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
-		driver.findElement(By.xpath(".//*[@id='row1']/div[1]/div[2]/a/img")).click();
+		driver.findElement(By.xpath("(.//*[@id='row1']//a/img)[1]")).click();
 		
-		driver.findElement(By.xpath(".//*[@id='prodForm']/div[3]/div[7]/a")).click();
+		driver.findElement(By.xpath(".//*[@class='personalizationOffered clearfix cb fl']")).click();
 		
-		driver.switchTo().activeElement();
+		Thread.sleep(2000);
+		int y = driver.findElements(By.tagName("iframe")).size();
+		System.out.println("size: "+y);
+			
 		
-		/*String parentWindowHandle = driver.getWindowHandle();
+		//how to focus on pop up 
+		driver.switchTo().frame(driver.findElement(By.xpath(".//*[@id='kat_alert']/div/div")));
 		
-		Set<String> childWindowHandles = driver.getWindowHandles();
-		Iterator <String> iterator  =  childWindowHandles.iterator ();
-		String subWindowHandler = null;
-		while (iterator.hasNext()){
-		    subWindowHandler = iterator.next();
-		}
-		driver.switchTo().window(subWindowHandler); // switch to popup window
+		System.out.println(driver.findElement(By.xpath(".//*[@id='text0'] ")).getText());
 		
-		System.out.println("Title:"+ driver.getTitle());
-
-		Now you are in the popup window, perform necessary actions here
-
-		driver.switchTo().window(parentWindowHandle);*/
-		
-	
-		driver.findElement(By.id(".//*[@id='text0']")).sendKeys("SHASHI");
-		
-		driver.findElement(By.xpath(".//*[@id='kat_optin']/div/label/span")).click();
 		//driver.close();
 		System.out.println("Thumb up!!");
 	}
