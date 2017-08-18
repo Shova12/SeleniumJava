@@ -5,6 +5,7 @@ package Test;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +16,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import files.PropertiesFiles;
 
@@ -59,17 +62,47 @@ public class functionalityTest {
 		
 		driver.findElement(By.xpath("(.//*[@id='row1']//a/img)[1]")).click();
 		
-		driver.findElement(By.xpath(".//*[@class='personalizationOffered clearfix cb fl']")).click();
+		//driver.findElement(By.xpath(".//*[@class='personalize']")).click();
 		
-		Thread.sleep(2000);
-		int y = driver.findElements(By.tagName("iframe")).size();
-		System.out.println("size: "+y);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@class='personalizationOffered clearfix cb fl']/a")));
+		
+		WebElement clickButton = driver.findElement(By.xpath(".//*[@class='personalizationOffered clearfix cb fl']/a"));
+		if(clickButton.isEnabled()){
+			System.out.println("The button is found");
+			clickButton.click();
+			if(clickButton.isSelected()){
+				System.out.println(" Selection");
+				
+			}
+			else{
+				System.out.println("Button is not clicked");
+			}
+		}
+		else{
+			System.out.println("Button is not found");
+		}
+		
+		List<WebElement> y = driver.findElements(By.tagName("iframe"));
+		System.out.println("size: "+y.size());
+		
+		/*for(int i=0; i<y.size(); i++){
+			
+			System.out.println("Value:"+y.get(i).getText());
+			
+		}*/
 			
 		
 		//how to focus on pop up 
-		driver.switchTo().frame(driver.findElement(By.xpath(".//*[@id='kat_alert']/div/div")));
 		
-		System.out.println(driver.findElement(By.xpath(".//*[@id='text0'] ")).getText());
+		/*WebDriverWait frame = new WebDriverWait(driver,20);
+				frame.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(".//*[@id='wrap']/div")));*/
+		
+		//driver.switchTo().frame(driver.findElement(By.xpath(".//*[@id='wrap']/div")));
+		
+		//System.out.println(driver.findElement(By.xpath(".//*[@id='text0'] ")).getText());
 		
 		//driver.close();
 		System.out.println("Thumb up!!");

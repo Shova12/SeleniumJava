@@ -67,7 +67,7 @@ public class RegisterForm {
 		Thread.sleep(2000);
 		WebElement newEmail = driver.findElement(By.id("newEmail"));
 		if(newEmail.isEnabled()){
-			newEmail.sendKeys("utestester10@gmail.com");
+			newEmail.sendKeys("utestester11@gmail.com");
 			System.out.println("The text box is enabled and ready to click on button");
 		}
 		else{

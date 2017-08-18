@@ -25,7 +25,7 @@ import files.PropertiesFiles;
 import junit.framework.Assert;
 
 public class FunctionalTest {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		PropertiesFiles prop = new PropertiesFiles();
 		String browserType = prop.browserType();
 	
@@ -68,94 +68,89 @@ public class FunctionalTest {
 		driver.findElement(By.className("searchFormButton")).submit();
 		
 		
-		driver.findElement(By.xpath(".//*[@id='row1']/div[1]/div[2]/a/img")).click();
+		//driver.findElement(By.xpath(".//*[@id='row1']/div[1]/div[2]/a/img")).click();  
+		
+		
+		String part1 = ".//*[@id='row1']";
+		String part2 = "//*[@class='productImage lazyLoad loadingGIF']";
+		
+		driver.findElement(By.xpath(part1+part2)).click();
+		
+		//driver.findElement(By.xpath(".//*[@id='row1']/div[1]/div[2]/a/img")).click();
 		System.out.println(driver.getTitle());
 		
 		/*WebElement selectTextBox = (new WebDriverWait(driver, 20))
 				  .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[@id='selectProductSize")));
 		System.out.println(selectTextBox);*/
 		
-		WebElement dropDownMenu = driver.findElement(By.xpath(".//*[@class='dropDownWrapper']"));
-		dropDownMenu.click();
+
+		/*If select option style is shown then we can use Select other wise then just click
+		 * 
+		 * Select selectSize = new Select(selectTextBox);
+		 
+		List<WebElement> countList = selectTextBox.getOptions();
 		
-		driver.findElement(By.xpath(".//*[@class='dropDownOptions']/li[2]/a")).click();
-		
-		//Select selectSize = new Select(selectTextBox);
-		//List<WebElement> countList = selectTextBox.getOptions();
-		
-		/*List<WebElement> selectCount = selectSize.getOptions();
+		List<WebElement> selectCount = selectSize.getOptions();
 		int listSize = selectCount.size();
 		//print size of list
-		System.out.println("The size is "+listSize);
-		try{
-			for(int i=0; i<listSize; i++){
-				String s = selectSize.getOptions().get(i).getText();
-				
-				System.out.println("List: "+ s);
-			
-				//checking if contains string
-				if(s.equals("")){
-					selectSize.selectByIndex(1);
-					System.out.println("The size is Selected.");
-					
-				}
-				else{
-					System.out.println("Size is not selected");
-				}
-			//break;
-				
-			}
-			
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-		}*/
+		System.out.println("The size is "+listSize);*/
 		
-	
+		WebElement dropDownMenu = driver.findElement(By.xpath(".//*[@class='dropDownWrapper']"));
+		
+		dropDownMenu.click();
+		driver.findElement(By.xpath(".//*[@class='dropDownOptions']/li[2]/a")).click();
+		
 		
 		//choose color
-		driver.findElement(By.xpath(".//*[@title='AQUA BLUE']")).click();
-		System.out.println("The COLOUR is selected.");
+		/*driver.findElement(By.xpath(".//*[@title='AQUA BLUE']")).click();
+		System.out.println("The COLOUR is selected.");*/
+		System.out.println("CHOOSE COLOR");
+		WebElement color = driver.findElement(By.xpath(".//*[@class='registryDataItemsWrap listDataItemsWrap']"));
+				
+		List<WebElement> colorCount = color.findElements(By.xpath(".//ul[@class='width_5 swatches clearfix']/li"));
+				
+		System.out.println("Size: "+colorCount.size());
+		for(int i=0; i<colorCount.size();i++){
+			String var = driver.findElement(By.xpath(".//ul[@class='width_5 swatches clearfix']/li")).getText(); // COULDN"T GET VALUE IN XPATH IN STRING
+			System.out.println("Value:"+var);
+			System.out.println(".//ul[@class='width_5 swatches clearfix']/li["+i+"]"+"Xpath: "+var);
+			System.out.println("Color: " +colorCount.get(i).getText());
+				
+		}
+				
+		WebElement colorChoose = driver.findElement(By.xpath(".//ul[@class='width_5 swatches clearfix']/li[2]"));
+
 		
-		/*
-		 *for clicking on  point in chrome
-		 WebElement element = driver.findElement(By.xpath(".//*[@id='row1']/div[1]/div[2]/div[2]/div[1]/a"));
-		 
-		Actions action = new Actions(driver);
-		action.moveToElement(element).click().perform();
 		
-		*/
-		
-		
-		
-		
-		WebElement addToCartButton=  driver.findElement(By.xpath(".//*[@id='shoppingCartItems']"));
-		/*driver.findElement(By.xpath("")).sendKeys("utestester10@gmail.com");
-		driver.findElement(By.xpath("")).sendKeys("Abcd1234");
-*/		//.//*[@id='buttonRedesign']/div/input
+	//Add to cart
+		WebElement addToCartButton=  driver.findElement(By.xpath(".//*[@id='buttonRedesign']/div/input"));
 		
 		
 		if(addToCartButton.isEnabled()){
 			System.out.println("The button is enabled");
-			addToCartButton.click();
+			addToCartButton.submit();
+			System.out.println("The item is added to cart");
 			
 		}
 		else{
 			System.out.println("The button is not enabled");
 		}
 		
+		/*
+		Thread.sleep(2000);
 		
-		
-		WebElement cart = driver.findElement(By.xpath(".//*[@id='cartItems']"));
-		cart.click();
-		if(cart.equals(1)){
+		WebElement cartAfterAddingItems = driver.findElement(By.xpath(".//*[@id='cartItems']"));
+		cartAfterAddingItems.click();
+		if(cartAfterAddingItems.equals(1)){
 			System.out.println("the item no is 1");
 		}else{
 			System.out.println("The cart is empty");
-		}
+		}*/
 	
 		driver.close();
 		System.out.println("Completed Succesfully!!");
 	}
+
+	
 
 }

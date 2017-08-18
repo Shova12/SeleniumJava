@@ -102,6 +102,14 @@ public class UserRegistration {
 		selectSize.selectByVisibleText("United States");
 		//select.selectByVisibleText("Barbados");
 		
+		WebElement mainForm = driver.findElement(By.xpath(".//*[@class='create_account_left']"));
+		
+		List<WebElement> countryList = mainForm.findElements(By.xpath(".//*[@id='sbHolder_41155405']/ul/li"));
+		
+		System.out.println("Size"+ countryList.size());
+	
+		
+		
 		driver.findElement(By.xpath(".//*[@id='email_address']")).sendKeys("utesttester10@gmail.com");
 		driver.findElement(By.xpath(".//*[@id='confirm_email_address']")).sendKeys("utesttester10@gmail.com");
 		driver.findElement(By.xpath(".//*[@id='first_name']")).sendKeys("Tester");
