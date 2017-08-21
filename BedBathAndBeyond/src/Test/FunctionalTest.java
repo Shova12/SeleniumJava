@@ -55,7 +55,7 @@ public class FunctionalTest {
 		System.out.println(driver.toString());
 		
 		driver.manage().window().maximize();
-		
+	
 		driver.get("https://www.bedbathandbeyond.com");
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -110,15 +110,15 @@ public class FunctionalTest {
 		List<WebElement> colorCount = color.findElements(By.xpath(".//ul[@class='width_5 swatches clearfix']/li"));
 				
 		System.out.println("Size: "+colorCount.size());
-		for(int i=0; i<colorCount.size();i++){
-			String var = driver.findElement(By.xpath(".//ul[@class='width_5 swatches clearfix']/li")).getText(); // COULDN"T GET VALUE IN XPATH IN STRING
-			System.out.println("Value:"+var);
-			System.out.println(".//ul[@class='width_5 swatches clearfix']/li["+i+"]"+"Xpath: "+var);
-			System.out.println("Color: " +colorCount.get(i).getText());
+		for(int i=1; i<colorCount.size();i++){
+			String var = driver.findElement(By.xpath(".//ul[@class='width_5 swatches clearfix']/li")).getAttribute("data-attr"); // COULDN"T GET VALUE IN XPATH IN STRING
+			System.out.println(".//ul[@class='width_5 swatches clearfix']/li["+i+"]"+"Color: "+var);
+			//System.out.println("Color: " +colorCount.get(i).getText());
 				
 		}
 				
 		WebElement colorChoose = driver.findElement(By.xpath(".//ul[@class='width_5 swatches clearfix']/li[2]"));
+		colorChoose.click();
 
 		
 		

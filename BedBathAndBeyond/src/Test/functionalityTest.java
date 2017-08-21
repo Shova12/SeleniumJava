@@ -97,15 +97,17 @@ public class functionalityTest {
 		
 		//how to focus on pop up 
 		
-		/*WebDriverWait frame = new WebDriverWait(driver,20);
-				frame.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(".//*[@id='wrap']/div")));*/
+		/*WebDriverWait frame = new WebDriverWait(driver,20)
+				.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(".//*[@id='wrap']/div")));*/
 		
-		//driver.switchTo().frame(driver.findElement(By.xpath(".//*[@id='wrap']/div")));
+		WebElement frame = driver.findElement(By.xpath(".//iframe[contains(@id,'katori_xdm_modal')]"));
+		frame.click();
+		//driver.switchTo().frame(frame);
 		
 		//System.out.println(driver.findElement(By.xpath(".//*[@id='text0'] ")).getText());
 		
 		//driver.close();
-		System.out.println("Thumb up!!");
+		System.out.println("Successful!!");
 	}
 	
 
