@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Learning Sample TestNG">
+  <test name="Learning TestNG">
+    <classes>
+      <class name="moreAnn.BeforeAndAfter"/>
+      <class name="basicTesting.SampleTestng"/>
+      <class name="run.Test1"/>
+      <class name="run.Test2"/>
+      <class name="moreAnn.DataProvid"/>
+    </classes>
+  </test> <!-- Learning TestNG -->
+</suite> <!-- Learning Sample TestNG -->

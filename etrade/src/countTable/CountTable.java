@@ -107,12 +107,13 @@ public class CountTable {
 		}
 		
 		
-		/*
+		/*//Print Row value
 		for(int i=0;i<rowList.size();i++){
 			System.out.println("valueR:"+ rowList.get(i).getText());
 			
 		}
 	
+		//Print Column  value
 		for(int i=0;i<colList.size();i++){
 			System.out.println("value:"+ colList.get(i).getText());	
 			
