@@ -110,32 +110,39 @@ public class FunctionalTest {
 		List<WebElement> colorCount = color.findElements(By.xpath(".//ul[@class='width_5 swatches clearfix']/li"));
 				
 		System.out.println("Size: "+colorCount.size());
-		for(int i=1; i<colorCount.size();i++){
-			String var = driver.findElement(By.xpath(".//ul[@class='width_5 swatches clearfix']/li")).getAttribute("data-attr"); // COULDN"T GET VALUE IN XPATH IN STRING
-			System.out.println(".//ul[@class='width_5 swatches clearfix']/li["+i+"]"+"Color: "+var);
-			//System.out.println("Color: " +colorCount.get(i).getText());
-				
+		for(int i=1; i<=colorCount.size();i++){
+			String var = driver.findElement(By.xpath(".//ul[@class='width_5 swatches clearfix']/li["+i+"]")).getAttribute("data-attr");
+			System.out.println("color: "+var);
+			
 		}
-				
-		WebElement colorChoose = driver.findElement(By.xpath(".//ul[@class='width_5 swatches clearfix']/li[2]"));
-		colorChoose.click();
-
 		
+		//if(){
+			driver.findElement(By.xpath(".//ul[@class='width_5 swatches clearfix']/li[4]")).click(); //if there is only 3 items then how we handle that.
+			
+		//}
+			
+		Thread.sleep(2000);
 		
 	//Add to cart
-		WebElement addToCartButton=  driver.findElement(By.xpath(".//*[@id='buttonRedesign']/div/input"));
+		WebElement addToCartButton=  driver.findElement(By.xpath(".//input[@class='spCtaBtn button-Large btnSecondary']"));
+		addToCartButton.submit();
 		
-		
-		if(addToCartButton.isEnabled()){
-			System.out.println("The button is enabled");
+		/*Check Weather addTocart button is displayed or not.
+		 * if(addToCartButton.isDisplayed()){
+			System.out.println("The button is displayed");
 			addToCartButton.submit();
 			System.out.println("The item is added to cart");
 			
 		}
 		else{
-			System.out.println("The button is not enabled");
-		}
+			System.out.println("The button is not displayed");
+		}*/
 		
+		
+		
+		//driver.switchTo().alert();
+		
+		//driver.findElement(By.xpath(".//*[@class='ui-dialog ui-widget ui-widget-content ui-corner-all addtoCartModal']"));
 		/*
 		Thread.sleep(2000);
 		
