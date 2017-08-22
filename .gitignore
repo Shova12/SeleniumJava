@@ -1,9 +1,12 @@
 .metadata
+
 .recommenders
+
 */.metadata
-*/.recommenders/
+
+*/.recommenders
 */Day6Day7
 */Day8
 */Day4
 */day3
-*/day2
+*/day2/
